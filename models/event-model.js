@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { isValidTimezone } from "../utils/timezone.util";
 
 const eventSchema = new mongoose.Schema(
     {
@@ -15,9 +16,7 @@ const eventSchema = new mongoose.Schema(
             default: "UTC",
             trim: true,
             validate: {
-                validator: (value) => {
-                    return Intl.supportedValuesOf("timeZone").includes(value);
-                },
+                validator: isValidTimezone,
                 message: "Timezone Invalid"
             }
         },
