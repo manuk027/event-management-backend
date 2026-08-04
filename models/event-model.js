@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { isValidTimezone } from "../utils/timezone.util";
+import { isValidTimezone } from "../utils/timezone.util.js";
 
 const eventSchema = new mongoose.Schema(
     {
@@ -39,11 +39,8 @@ eventSchema.path("users").validate(
     "Select at least one user."
 );
 
-eventSchema.pre("validate", function (next) {
-    if (this.startTime && this.endTime <= this.startTime) {
-        return next(new Error("End time should not be before start time."));
-    }
-    next();
+eventSchema.pre("validate", function () {
+    if (this.startTime && this.endTime && this.endTime <= this.startTime) throw new Error("End time must be after start time.");
 });
 
 const Event = mongoose.model("Event", eventSchema);

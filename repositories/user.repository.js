@@ -19,6 +19,9 @@ class UserRepository {
     async findByName(name) {
         return await User.findOne({ name });
     }
+    async findByIds(userIds) {
+        return await User.find({ _id: { $in: userIds } });
+    }
 };
 
 export default new UserRepository();

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { isValidTimeout, isValidTimezone } from "../utils/timezone.util.js";
+import { isValidTimezone } from "../utils/timezone.util.js";
 
 const userSchema = new mongoose.Schema(
     {
