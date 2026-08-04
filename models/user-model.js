@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { isValidTimeout } from "../utils/timezone.util.js";
 
 const userSchema = new mongoose.Schema(
     {
@@ -15,9 +16,7 @@ const userSchema = new mongoose.Schema(
             default: "UTC",
             trim: true,
             validate: {
-                validator: (value) => {
-                    return Intl.supportedValuesOf("timeZone").includes(value);
-                },
+                validator: isValidTimeout,
                 message: "Timezone Invalid"
             }
         },
