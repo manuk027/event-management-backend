@@ -7,19 +7,22 @@ const eventLogSchema = new mongoose.Schema(
             ref: "Event",
             required: true,
         },
-        message: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        previousValue: {
-            type: mongoose.Schema.Types.Mixed,
-            required: true,
-        },
-        newValue: {
-            type: mongoose.Schema.Types.Mixed,
-            required: true,
-        }
+        changes: [
+            {
+                field: {
+                    type: String,
+                    required: true,
+                },
+                previousValue: {
+                    type: mongoose.Schema.Types.Mixed,
+                    required: true,
+                },
+                newValue: {
+                    type: mongoose.Schema.Types.Mixed,
+                    required: true,
+                },
+            },
+        ],
     },
     {
         timestamps: true
