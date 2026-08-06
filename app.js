@@ -8,9 +8,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use(
-    cors({ origin: "http://localhost:3002", })
-);
+app.use(cors());
 
 app.use("/api", routes);
 
